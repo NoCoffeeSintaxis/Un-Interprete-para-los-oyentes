@@ -1,4 +1,4 @@
-<p align='center'><u><b> Un intérprete para los oyentes </b>b</u></p>
+# <p align='center'><u><b> Un intérprete para los oyentes </b></u></p>
 
 Este proyecto busca desarrollar una aplicación que permita a las personas sordas comunicarse con los oyentes, teniendo en cuenta únicamente la lengua de señas colombiana (LSC)
 
