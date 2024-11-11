@@ -11,7 +11,7 @@ video_count = 0
 
 # Recorrer todos los archivos de la carpeta
 for filename in os.listdir(folder_path):
-    # Verificar si el archivo es un video (ejemplo: archivos .mp4)
+    # Verificar si el archivo es un video 
     if filename.endswith('.mp4'):
         video_path = os.path.join(folder_path, filename)
         cap = cv2.VideoCapture(video_path)

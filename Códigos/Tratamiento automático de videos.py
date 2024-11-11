@@ -10,7 +10,7 @@ output_dir = 'C:/Users/juand/Desktop/Un-Interprete-para-los-oyentes/Datos'
 os.makedirs(output_dir, exist_ok=True)
 
 for filename in os.listdir(folder_path):
-    if filename.endswith('.mp4'):  # Asegurarse de que sea un archivo de video
+    if filename.endswith('.mp4'):  
         # Inicializar una lista para almacenar los frames
         frames = []
         
