@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-video_path = 'C:/Users/juand/Desktop/Un-Interprete-para-los-oyentes/Videos/a/A2.mp4'
+video_path = 'C:/Users/juand/Desktop/Un-Interprete-para-los-oyentes/Videos/a/A11.mp4'
 frame_lapse = 5
 
 # Inicializar una lista para almacenar los frames
@@ -17,7 +17,7 @@ for i in range(0, int(cap.get(cv2.CAP_PROP_FRAME_COUNT)), frame_lapse):
         break
     
     frame = cv2.resize(frame, (474, 850))  # Redimensionar el frame
-    gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)  # Convertir a escala de grises
+    gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)  # Convertir a escala de grises, suelta una matriz numpy
     
     frames.append(gray_frame)  # Agregar el frame a la lista
 

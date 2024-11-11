@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-A = np.load('C:/Users/juand/Desktop/Un-Interprete-para-los-oyentes/Datos/A3.npy')
+A = np.load('C:/Users/juand/Desktop/Un-Interprete-para-los-oyentes/Datos/A/A1.npy')
 
 # Seleccionar el primer frame
 first_frame = A[:, :, 1]

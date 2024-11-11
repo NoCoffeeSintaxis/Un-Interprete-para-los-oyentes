@@ -39,7 +39,7 @@ else:
 
 
 # Muestra de dimensiones de ejemplo
-video_path = 'C:/Users/juand/Desktop/Un-Interprete-para-los-oyentes/Videos/a/A6.mp4'
+video_path = 'C:/Users/juand/Desktop/Un-Interprete-para-los-oyentes/Videos/a/A8.mp4'
 cap = cv2.VideoCapture(video_path)
 width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
