@@ -2,11 +2,11 @@ import numpy as np
 import cv2
 import os
 
-folder_path = 'C:/Users/juand/Desktop/Un-Interprete-para-los-oyentes/Videos/a'
+folder_path = 'C:/Users/juand/Desktop/Un-Interprete-para-los-oyentes/Videos/d'
 frame_lapse = 5
 
 # Crear el directorio de destino si no existe
-output_dir = 'C:/Users/juand/Desktop/Un-Interprete-para-los-oyentes/Datos'
+output_dir = 'C:/Users/juand/Desktop/Un-Interprete-para-los-oyentes/Datos/D'
 os.makedirs(output_dir, exist_ok=True)
 
 for filename in os.listdir(folder_path):
