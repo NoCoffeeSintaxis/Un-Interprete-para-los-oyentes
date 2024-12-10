@@ -1,8 +1,13 @@
 import cv2
 import os
 
+## Este código calcula el promedio de las dimensiones de los videos en una carpeta
+### NOTA: Se usó solo en un inicio para conocer las dimensiones de los videos. 
+    # No es relevante para el funcionamiento del proyecto final.
+
 # Ruta de la carpeta con los videos
-folder_path = 'C:/Users/juand/Desktop/Un-Interprete-para-los-oyentes/Videos/a'
+##folder_path = 'C:/Users/juand/Desktop/Un-Interprete-para-los-oyentes/Videos/a'
+folder_path = 'Videos/a'
 
 # Variables para almacenar las dimensiones totales
 total_width = 0
