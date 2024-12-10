@@ -1,8 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+<<<<<<< HEAD
 ## Este código muestra frame a frame de la matriz de datos deseada o solo el último frame (si así lo quiere).
 ### Nota: Este código hace lo mismo que el de "Tratamiento de video", pero sin hacer todo el proceso de matrices.
+=======
+A = np.load('C:/Users/juand/Desktop/Un-Interprete-para-los-oyentes/Datos/R/R21.npy')
+>>>>>>> 4ca6982dfa6e4f013714e0a1fb8a188df9737ee9
 
 # Cargar la matriz de datos deseada
 A = np.load('Datos/s/S25.npy')
