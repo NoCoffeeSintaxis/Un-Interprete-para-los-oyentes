@@ -56,11 +56,16 @@ for letra in abc:
                 if not ret: 
                     break
                 
+                #Ancho y alto del frame
+                width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+                height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+
                 #Porcentaje de escala y definición de las nuevas dimensiones
-                if filename.endswith('26.mp4') or filename.endswith('27.mp4'):
+                if width == 480 and height == 860:
                     scale_percent = 18
                     ancho = int(frame.shape[1] * scale_percent / 100)
-                elif filename in videos_1_3:
+                    videos_26_27 = True
+                elif width == 474 and height == 850:
                     scale_percent = 18
                     ancho = int(frame.shape[1] * scale_percent / 100 + 1)
                 else:
@@ -79,7 +84,7 @@ for letra in abc:
 
             # Convertir la lista a una matriz tridimensional
             A = np.stack(frames, axis=2) if frames else None
-            if filename.endswith('26.mp4') or filename.endswith('27.mp4'):
+            if videos_26_27:
                 A = A[1:-1, :, :] # Eliminar los bordes de la imagen (arriba y abajo)
 
             # Verificar que la matriz tenga 5 frames

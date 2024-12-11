@@ -10,9 +10,9 @@ import os
 folder_path = 'Videos/a'
 
 # Variables para almacenar las dimensiones totales
-total_width = 0
-total_height = 0
 video_count = 0
+width = []
+height = []
 
 # Recorrer todos los archivos de la carpeta
 for filename in os.listdir(folder_path):
@@ -20,23 +20,23 @@ for filename in os.listdir(folder_path):
     if filename.endswith('.mp4'):
         video_path = os.path.join(folder_path, filename)
         cap = cv2.VideoCapture(video_path)
-        
+        name = os.path.splitext(filename)[0]  # Eliminar la extensión del archivo
+
         # Obtener las dimensiones del video
         width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-        # Acumular las dimensiones
-        total_width += width
-        total_height += height
         video_count += 1
+
+        print(f"La resolución del video {name} es: {width}x{height}")
 
         # Liberar el video
         cap.release()
 
 # Calcular el promedio de las dimensiones
 if video_count > 0:
-    avg_width = total_width / video_count
-    avg_height = total_height / video_count
+    avg_width = sum(width) / video_count
+    avg_height = sum(height) / video_count
     print("Promedio de ancho:", avg_width)
     print("Promedio de alto:", avg_height)
 else:

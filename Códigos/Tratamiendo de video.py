@@ -8,9 +8,9 @@ import matplotlib.pyplot as plt
     # o bien, compilar el código "Tratamiento de video.py" que hace el mismo proceso, pero para un solo video
     # y las printea.
 
-video_path = 'Videos/s/S27.mp4'
+video_path = 'Videos/a/A11.mp4'
 ###Si el video es del 1 al 3, cambiar a TRUE
-videos_1_3 = False
+videos_26_27 = False
 
 #Inicializar una lista para almacenar los frames
 frames = []
@@ -25,28 +25,32 @@ frame_lapse = int((frame_total-frame_inicial) / frame_want)
 
 print(f'Número de frames del video original: {frame_total}')
 
+
+
+
 count = 0
 for i in range(frame_inicial, int(cap.get(cv2.CAP_PROP_FRAME_COUNT)), frame_lapse):
     cap.set(cv2.CAP_PROP_POS_FRAMES, i) # Buscar el frame
     ret, frame = cap.read()  # Leer el frame
 
-    if count > 4:
-        break
-
-    if not ret: 
+    if count > 4 or not ret:
         break
     
+    #Ancho y alto del frame
+    width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+
     #Porcentaje de escala y definición de las nuevas dimensiones
-    if video_path.endswith('26.mp4') or video_path.endswith('27.mp4'):
+    if width == 480 and height == 864:
         scale_percent = 18
         ancho = int(frame.shape[1] * scale_percent / 100)
-    elif videos_1_3:
+        videos_26_27 = True
+    elif width == 474 and height == 850:
         scale_percent = 18
         ancho = int(frame.shape[1] * scale_percent / 100 + 1)
     else:
         scale_percent = 8
         ancho = int(frame.shape[1] * scale_percent / 100)
-    
     alto = int(frame.shape[0] * scale_percent / 100)
     new_dim = (ancho, alto)
 
@@ -60,7 +64,7 @@ for i in range(frame_inicial, int(cap.get(cv2.CAP_PROP_FRAME_COUNT)), frame_laps
 
 # Convertir la lista a una matriz tridimensional
 A = np.stack(frames, axis=2) if frames else None
-if video_path.endswith('26.mp4') or video_path.endswith('27.mp4'):
+if videos_26_27:
     A = A[1:-1, :, :] # Eliminar los bordes de la imagen (arriba y abajo)
 
 # Descomentar solo si se desea guardar la matriz en un archivo .npy
