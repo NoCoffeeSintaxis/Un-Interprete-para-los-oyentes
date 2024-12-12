@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 ### Nota: Este código hace lo mismo que el de "Tratamiento de video", pero sin hacer todo el proceso de matrices.
 
 # Cargar la matriz de datos deseada
-A = np.load('Datos/s/S25.npy')
+A = np.load('Datos/s/S24.npy')
 
 # Seleccionar el último frame
 last_frame = A[:, :, 4]
@@ -15,6 +15,6 @@ num_ord = ['Primer', 'Segundo', 'Tercer', 'Cuarto', 'Quinto']
 for i in range(A.shape[2]):
     i_frame = A[:, :, i]
     plt.imshow(i_frame, cmap='gray')
-    plt.title(f"{num_ord[i]} frame de la matriz A")
+    #plt.title(f"{num_ord[i]} frame de la matriz A")
     plt.axis('off')
     plt.show()

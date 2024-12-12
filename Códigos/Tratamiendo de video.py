@@ -4,15 +4,13 @@ import matplotlib.pyplot as plt
 
 ## Este código redimensiona un video, escoge solo 5 frames, los guarda en una matriz numpy y los printea.
 
-video_path = 'Videos/a/A11.mp4'
-###Si el video es del 1 al 3, cambiar a TRUE
+video_path = 'Videos/s/S24.mp4'
 videos_26_27 = False
 
 #Inicializar una lista para almacenar los frames
 frames = []
 cap = cv2.VideoCapture(video_path)
 
-##### NOTA: ESTA SECCIÓN DEL CÓDIGO SOLO ES VÁLIDA PARA LOS VIDEOS 26 Y 27
 #Lapso de frames para obtener el número de frames deseados
 frame_want = 5
 frame_inicial = 19
@@ -28,7 +26,7 @@ for i in range(frame_inicial, int(cap.get(cv2.CAP_PROP_FRAME_COUNT)), frame_laps
 
     if count > 4 or not ret:
         break
-    
+
     #Ancho y alto del frame
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
@@ -47,12 +45,13 @@ for i in range(frame_inicial, int(cap.get(cv2.CAP_PROP_FRAME_COUNT)), frame_laps
     alto = int(frame.shape[0] * scale_percent / 100)
     new_dim = (ancho, alto)
 
-    frame = cv2.resize(frame, new_dim)
+    #frame = cv2.resize(frame, new_dim)
 
     #Convertir a escala de grises, suelta una matriz numpy
     gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)  # Convertir a escala de grises, suelta una matriz numpy
-    
-    frames.append(gray_frame)  # Agregar el frame a la lista
+    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+    frames.append(frame_rgb)  # Agregar el frame a la lista
     count += 1
 
 # Convertir la lista a una matriz tridimensional
@@ -74,6 +73,7 @@ num_ord = ['Primer', 'Segundo', 'Tercer', 'Cuarto', 'Quinto']
 for i in range(A.shape[2]):
     i_frame = A[:, :, i]
     plt.imshow(i_frame, cmap='gray')
-    plt.title(f"{num_ord[i]} frame de la matriz A")
+    plt.title(f"{num_ord[i]} frame de la matriz S11")
     plt.axis('off')
+    plt.savefig(f'Frames/Frame0_{i}.png')
     plt.show()
