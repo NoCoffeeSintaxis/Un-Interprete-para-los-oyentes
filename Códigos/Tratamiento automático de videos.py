@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 import os
+import string  
 
 ## Este código pasa por cada video de cada carpeta de la carpeta Videos, redimensiona los videos, 
     # escoge solo 5 frames por video y los guarda en una matriz numpy en la carpeta "Datos" con el 
