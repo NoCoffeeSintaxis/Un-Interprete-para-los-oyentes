@@ -18,6 +18,6 @@ num_ord = ['Primer', 'Segundo', 'Tercer', 'Cuarto', 'Quinto']
 for i in range(A.shape[2]):
     i_frame = A[:, :, i]
     plt.imshow(i_frame, cmap='gray')
-    plt.title(f"{num_ord[i]} frame de la matriz A")
+    #plt.title(f"{num_ord[i]} frame de la matriz A")
     plt.axis('off')
     plt.show()

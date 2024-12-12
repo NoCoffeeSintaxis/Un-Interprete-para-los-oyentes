@@ -6,7 +6,6 @@ import os
     # No es relevante para el funcionamiento del proyecto final.
 
 # Ruta de la carpeta con los videos
-##folder_path = 'C:/Users/juand/Desktop/Un-Interprete-para-los-oyentes/Videos/a'
 folder_path = 'Videos/a'
 
 # Variables para almacenar las dimensiones totales
@@ -42,9 +41,8 @@ if video_count > 0:
 else:
     print("No se encontraron videos en la carpeta.")
 
-
 # Muestra de dimensiones de ejemplo
-video_path = 'C:/Users/juand/Desktop/Un-Interprete-para-los-oyentes/Videos/a/A8.mp4'
+video_path = 'Videos/a/A8.mp4'
 cap = cv2.VideoCapture(video_path)
 width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
