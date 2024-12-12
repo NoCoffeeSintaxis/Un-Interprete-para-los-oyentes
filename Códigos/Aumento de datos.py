@@ -320,14 +320,14 @@ plt.show()
 # Este código está diseñado para aplicar los filtros anteriormente mostrados a los videos presentes en la carpeta videos para añadirlos 
 # luego al set de datos, por lo tanto debe usarse una única vez, ya que usarlo más ocasiones resultará en aplicar filtros 
 # sobre imagenes ya filtradas.
-
+'''
 # Listas de letras
 mayus = list(string.ascii_uppercase) + ['LL', 'RR', 'Ñ']
 minus = list(string.ascii_lowercase) + ['ll', 'rr', 'ñ']
 
 # Parámetros
 letras_totales = 27  # Cantidad de matrices originales por carpeta
-filtros = [  # Lista de funciones de filtros con sus argumentos
+filtros = [ 
     lambda A: rotacion_positiva(A, 10),
     lambda A: rotacion_negativa(A, 10),
     lambda A: translacion_frames(A, 20, 20),
@@ -373,7 +373,7 @@ for letra, LETRA in zip(minus, mayus):
                     contador += 1 
 
 print("Procesamiento completado.")
-
+'''
             
             
 
