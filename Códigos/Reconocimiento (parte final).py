@@ -17,7 +17,7 @@ def start_camera():
 
     # Cuenta regresiva
     start_time = time.time()
-    countdown = 3
+    countdown = 5
     while countdown > 0:
         ret, frame = cap.read()
         if not ret:
