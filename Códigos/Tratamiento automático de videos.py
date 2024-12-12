@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 import os
-import string  # Para trabajar con las letras del abecedario
+import string  
 
 # Ruta base de los videos
 videos_base_path = 'C:/Users/juand/Desktop/Un-Interprete-para-los-oyentes/Videos'
