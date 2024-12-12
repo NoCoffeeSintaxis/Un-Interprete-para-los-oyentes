@@ -17,7 +17,7 @@ for letra in abc:
         name = os.path.splitext(filename)[0]
 
         #Printear la dimensión de cada matriz
-        print(f'Tamaño de la matriz {os.path.splitext(filename)[0]}: {matriz.shape}')
+        #print(f'Tamaño de la matriz {os.path.splitext(filename)[0]}: {matriz.shape}')
 
         #Sumar la cantidad de errores respecto a los frames
         if matriz.shape[2] != 5:
@@ -34,4 +34,7 @@ for letra in abc:
         plt.axis('off')
         plt.show()'''
 
-print(f'Número de errores: {errores}')
+if errores == 0:
+    print("Todas las matrices tienen el mismo tamaño")
+else:
+    print(f"Existen ", errores, "matrices diferentes.")

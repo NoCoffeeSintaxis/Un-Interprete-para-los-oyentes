@@ -5,10 +5,13 @@ import matplotlib.pyplot as plt
 ### Nota: Este código hace lo mismo que el de "Tratamiento de video", pero sin hacer todo el proceso de matrices.
 
 # Cargar la matriz de datos deseada
-A = np.load('Datos/s/S25.npy')
+A = np.load('Datos/a/A15.npy')
 
 # Seleccionar el último frame
 last_frame = A[:, :, 4]
+
+# Printear el tamaño del array
+print(A.shape)
 
 #Mostrar todos los frames de la matriz A
 num_ord = ['Primer', 'Segundo', 'Tercer', 'Cuarto', 'Quinto'] 
