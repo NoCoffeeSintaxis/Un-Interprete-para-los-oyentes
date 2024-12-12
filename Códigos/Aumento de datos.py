@@ -1,6 +1,8 @@
 import numpy as np
 import cv2
+import os
 import matplotlib.pyplot as plt
+import string
 
 
 # La siguiente sección del presente código muestra los diferentes filtros que serán empleados para aumentar la cantidad de datos en el dataset utilizado
@@ -83,7 +85,7 @@ plt.axis('off')
 plt.show()
 '''
 
-# 3. Zoom
+# 4. Zoom
 # Este filtro realiza un zoom de (zoom_factor) a la imagen.
 def zoom_frames(A, zoom_factor):
     (h, w, num_frames) = A.shape
@@ -112,7 +114,7 @@ plt.axis('off')
 plt.show()
 '''
 
-# 4. Normalización
+# 5. Normalización
 # Esta función ajusta los valores de los píxeles para que estén entre 0 y 255.
 def normalize_frames(A):
     A_min = A.min(axis=(0, 1), keepdims=True)
@@ -122,15 +124,15 @@ def normalize_frames(A):
 '''
 # Visualización de la normalización
 
-normalized_frames = normalize_frames(video)
+NF = normalize_frames(video)
 
-plt.imshow(normalized_frames[:, :, 4], cmap='gray')
+plt.imshow(NF[:, :, 4], cmap='gray')
 plt.title("frame normalizado")
 plt.axis('off')
 plt.show()
 '''
 
-# 5. Filtro Gaussiano
+# 6. Filtro Gaussiano
 # Este filtro suaviza los frames mediante un desenfoque gaussiano para reducir el ruido.
 def desenfoque_gaussiano(A, kernel_size):
     return np.stack([cv2.GaussianBlur(A[:, :, i], (kernel_size, kernel_size), 0) for i in range(A.shape[2])], axis=2)
@@ -147,7 +149,7 @@ plt.axis('off')
 plt.show()
 '''
 
-# 6. Filtro Mediana
+# 7. Filtro Mediana
 # Este filtro reemplaza el valor de cada píxel con la mediana de los píxeles vecinos para reducir el ruido.
 def filtro_mediana(A, kernel_size):
     return np.stack([cv2.medianBlur(A[:, :, i], kernel_size) for i in range(A.shape[2])], axis=2)
@@ -164,7 +166,7 @@ plt.axis('off')
 plt.show()
 '''
 
-# 7. Umbralización Binaria
+# 8. Umbralización Binaria
 # Este filtro convierte cada frame en blanco y negro dependiendo de un valor de umbral.
 def umbralizacion_binaria(A, umbral):
     return np.stack([cv2.threshold(A[:, :, i], umbral, 255, cv2.THRESH_BINARY)[1] for i in range(A.shape[2])], axis=2)
@@ -180,7 +182,7 @@ plt.axis('off')
 plt.show()
 '''
 
-# 8. Umbralización Adaptativa
+# 9. Umbralización Adaptativa
 # Este filtro ajusta dinámicamente el umbral para cada píxel según su vecindario.
 def umbralizacion_adaptativa(A, block_size, C):
     return np.stack([cv2.adaptiveThreshold(A[:, :, i], 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
@@ -197,15 +199,15 @@ plt.axis('off')
 plt.show()
 '''
 
-# 9. Detección de Bordes
+# 10. Detección de Bordes
 # Este filtro identifica los bordes en cada frame utilizando el algoritmo de Canny.
-def apply_canny_edge_detection(A, umbral_min, umbral_max):
+def deteccion(A, umbral_min, umbral_max):
     return np.stack([cv2.Canny(A[:, :, i], umbral_min, umbral_max) for i in range(A.shape[2])], axis=2)
 
 '''
 # Visualización del filtro
 
-edges = apply_canny_edge_detection(video, 50, 150)
+edges = deteccion(video, 50, 150)
 
 plt.imshow(edges[:, :, 4], cmap='gray')
 plt.title("Frame con detección de bordes")
@@ -213,7 +215,7 @@ plt.axis('off')
 plt.show()
 '''
 
-# 10. Filtro Laplaciano
+# 11. Filtro Laplaciano
 # Este filtro detecta cambios rápidos de intensidad (bordes) mediante la segunda derivada.
 def filtro_laplaciano(A):
     return np.stack([cv2.Laplacian(A[:, :, i], cv2.CV_64F) for i in range(A.shape[2])], axis=2).astype(np.uint8)
@@ -229,7 +231,7 @@ plt.axis('off')
 plt.show()
 '''
 
-# 11. Filtro de Borde
+# 12. Filtro de Borde
 # Este filtro detecta bordes en las imágenes utilizando el operador de Sobel.
 def filtro_sobel(A):
     return np.stack([cv2.Sobel(A[:, :, i], cv2.CV_64F, 1, 1, ksize=3) for i in range(A.shape[2])], axis=2).astype(np.uint8)
@@ -245,7 +247,7 @@ plt.axis('off')
 plt.show()
 '''
 
-# 12. Ecualización de Histograma
+# 13. Ecualización de Histograma
 # Este filtro mejora el contraste de cada frame al redistribuir las intensidades del histograma.
 def ecualizacion_histograma(A):
     return np.stack([cv2.equalizeHist(A[:, :, i]) for i in range(A.shape[2])], axis=2)
@@ -261,7 +263,7 @@ plt.axis('off')
 plt.show()
 '''
 
-# 13. Inversión de Intensidades
+# 14. Inversión de Intensidades
 # Este filtro invierte los valores de intensidad de cada frame.
 # Las intensidades oscuras se vuelven claras y viceversa.
 def inversion(A):
@@ -278,7 +280,7 @@ plt.axis('off')
 plt.show()
 '''
 
-# 14. Brillo Aleatorio
+# 15. Brillo Aleatorio
 # Este filtro ajusta el brillo de cada frame añadiendo un valor constante (factor) a las intensidades.
 def brillo_aleatorio(A, factor):
     return np.clip(A + factor, 0, 255).astype(np.uint8)
@@ -295,7 +297,7 @@ plt.axis('off')
 plt.show()
 '''
 
-# 15. Contraste Aleatorio
+# 16. Contraste Aleatorio
 # Este filtro ajusta el contraste de cada frame mediante la fórmula: 128 + factor * (A - 128).
 # Aquí, 128 representa la intensidad promedio, usada como punto de referencia para el ajuste.
 def contraste_aleatorio(A, factor):
@@ -315,6 +317,66 @@ plt.show()
 
 ## Augmenting data automatization ##
 # ¡Usar esta parte de este código una única vez! 
-# Este código está diseñado para aplicar los filtros anteriormente mostrados para añadirlos luego al set de datos, por lo tanto debe 
-# usarse una única vez, ya que usarlo más ocasiones resultará en aplicar filtros sobre imagenes ya filtradas.
+# Este código está diseñado para aplicar los filtros anteriormente mostrados a los videos presentes en la carpeta videos para añadirlos 
+# luego al set de datos, por lo tanto debe usarse una única vez, ya que usarlo más ocasiones resultará en aplicar filtros 
+# sobre imagenes ya filtradas.
 
+# Listas de letras
+mayus = list(string.ascii_uppercase) + ['LL', 'RR', 'Ñ']
+minus = list(string.ascii_lowercase) + ['ll', 'rr', 'ñ']
+
+# Parámetros
+letras_totales = 27  # Cantidad de matrices originales por carpeta
+filtros = [  # Lista de funciones de filtros con sus argumentos
+    lambda A: rotacion_positiva(A, 10),
+    lambda A: rotacion_negativa(A, 10),
+    lambda A: translacion_frames(A, 20, 20),
+    lambda A: zoom_frames(A, 1.5),
+    lambda A: normalize_frames(A),
+    lambda A: desenfoque_gaussiano(A, 7),
+    lambda A: filtro_mediana(A, 7),
+    lambda A: umbralizacion_binaria(A, 127),
+    lambda A: umbralizacion_adaptativa(A, 11, 2),
+    lambda A: deteccion(A, 50, 150),
+    lambda A: filtro_laplaciano(A),
+    lambda A: filtro_sobel(A),
+    lambda A: ecualizacion_histograma(A),
+    lambda A: inversion(A),
+    lambda A: brillo_aleatorio(A, 55),
+    lambda A: contraste_aleatorio(A, 1.5),
+]
+
+# Número total de filtros
+cant_filtros = len(filtros)
+
+for letra, LETRA in zip(minus, mayus):
+    contador = letras_totales + 1  # Iniciar desde A28
+    for j in range(1, letras_totales + 1):
+            # Ruta de la matriz original
+            path_matrices = f'DATOS/{letra}/{LETRA}{j}.npy'
+
+            # Verificar si la matriz existe
+            if not os.path.exists(path_matrices):
+                print(f"Archivo no encontrado: {path_matrices}")
+                continue
+
+            # Cargar matriz original
+            A = np.load(path_matrices)
+
+            # Aplicar cada filtro una vez
+            for filtro in filtros:
+                matriz_transformada = filtro(A)
+                if matriz_transformada is not None:
+                    path_guardado = f'DATOS/{letra}/{LETRA}{contador}.npy'
+                    os.makedirs(os.path.dirname(path_guardado), exist_ok=True)
+                    np.save(path_guardado, matriz_transformada)
+                    contador += 1 
+
+print("Procesamiento completado.")
+
+            
+            
+
+
+
+ 
