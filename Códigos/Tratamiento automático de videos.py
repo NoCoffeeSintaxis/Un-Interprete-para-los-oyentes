@@ -88,7 +88,7 @@ for letra in abc:
                 A = A[1:-1, :, :] # Eliminar los bordes de la imagen (arriba y abajo)
 
             # Verificar que la matriz tenga 5 frames
-            if A.shape[2] != 5:
+            if A.shape[2] != 5 or A.shape[0] != 153 or A.shape[1] != 86:
                 print('Error en la matriz', name)
                 errores += 1
 

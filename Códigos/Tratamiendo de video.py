@@ -3,10 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 ## Este código redimensiona un video, escoge solo 5 frames, los guarda en una matriz numpy y los printea.
-### NOTA: Solo compilar para generar las matrices, si están ya están generadas, no compilar.
-    # Si se desea verificar la funcionalidad del código, puede comentar el guardado de la matriz y printearla,
-    # o bien, compilar el código "Tratamiento de video.py" que hace el mismo proceso, pero para un solo video
-    # y las printea.
 
 video_path = 'Videos/a/A11.mp4'
 ###Si el video es del 1 al 3, cambiar a TRUE
@@ -24,9 +20,6 @@ frame_total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 frame_lapse = int((frame_total-frame_inicial) / frame_want)
 
 print(f'Número de frames del video original: {frame_total}')
-
-
-
 
 count = 0
 for i in range(frame_inicial, int(cap.get(cv2.CAP_PROP_FRAME_COUNT)), frame_lapse):
@@ -84,20 +77,3 @@ for i in range(A.shape[2]):
     plt.title(f"{num_ord[i]} frame de la matriz A")
     plt.axis('off')
     plt.show()
-
-#Mostrar el último frame de la matriz A
-'''last_frame = A[:, :, i]
-plt.imshow(last_frame, cmap='gray')
-plt.title(f"Último frame de la matriz A")
-plt.axis('off')
-plt.show()'''
-
-# Crear un video a partir de la matriz A
-'''if A is not None:
-    height, width, num_frames = A.shape
-    out = cv2.VideoWriter('output_video.avi', cv2.VideoWriter_fourcc(*'XVID'), 20, (width, height), isColor=False)
-    
-    for i in range(num_frames):
-        out.write(A[:, :, i])
-    
-    out.release()'''

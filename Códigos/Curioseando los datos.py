@@ -18,9 +18,3 @@ for i in range(A.shape[2]):
     plt.title(f"{num_ord[i]} frame de la matriz A")
     plt.axis('off')
     plt.show()
-
-'''# Mostrar el último frame
-plt.imshow(last_frame, cmap='gray')
-plt.title("Último frame de la matriz A")
-plt.axis('off')
-plt.show()'''

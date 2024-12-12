@@ -14,13 +14,18 @@ for letra in abc:
     folder_path = 'Datos/' + letra
     for filename in os.listdir(folder_path):
         matriz = np.load(folder_path + '/' + filename)
+        name = os.path.splitext(filename)[0]
+
         #Printear la dimensión de cada matriz
         print(f'Tamaño de la matriz {os.path.splitext(filename)[0]}: {matriz.shape}')
 
         #Sumar la cantidad de errores respecto a los frames
         if matriz.shape[2] != 5:
-            print(f'Error en la matriz {os.path.splitext(filename)[0]}')
+            print(f'Error en la matriz {name}')
             errores += 1
+        if matriz.shape[2] != 5 or matriz.shape[0] != 153 or matriz.shape[1] != 86:
+                print(f'Error en la matriz {name}')
+                errores += 1
 
         #Mostrar el último frame de la matriz
         ###Nota: Esto se hizo para verificar que se mostraba la seña. No es necesario descomentar.
