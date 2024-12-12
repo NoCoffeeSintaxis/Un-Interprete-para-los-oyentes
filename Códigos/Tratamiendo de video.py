@@ -16,7 +16,7 @@ for i in range(0, int(cap.get(cv2.CAP_PROP_FRAME_COUNT)), frame_lapse):
     if not ret: 
         break
     
-    frame = cv2.resize(frame, (474, 850))  # Redimensionar el frame
+    frame = cv2.resize(frame, (474, 850))  # Redimensionar el frame 474, 850
     gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)  # Convertir a escala de grises, suelta una matriz numpy
     
     frames.append(gray_frame)  # Agregar el frame a la lista
