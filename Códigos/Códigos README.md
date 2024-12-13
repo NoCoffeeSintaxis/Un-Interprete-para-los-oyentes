@@ -19,6 +19,12 @@ tridimensional en formato numpy (.npy)
 
 **Tratamiento automático de videos:** Lee cada uno de los videos, los convierte en matrices tridimensionales y los almacena en la carpeta "Datos"
 
+**Curioseando los datos:** ¡Aquí podrás visualizar las matrices en forma de imágenes!
+
+**Verificar dimensiones de las matrices**: Cuenta la cantidad de matrices cuya dimensión no concuerda con (153,86,5).
+
 **Metadata:** Almacena las etiquetas y direcciones de cada uno de los videos en "Datos" en un dataframe de pandas.
 
-**Verificar dimensiones de las matrices:** Cuenta la cantidad de matrices que tienen diferentes dimensiones.
+## Finales
+
+**Verificar dimensiones de las matrices:** 
