@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 ### Nota: Este código hace lo mismo que el de "Tratamiento de video", pero sin hacer todo el proceso de matrices.
 
 # Cargar la matriz de datos deseada
-A = np.load('Datos/s/S24.npy')
+A = np.load('Datos/a/A420.npy')
 
 # Seleccionar el último frame
 last_frame = A[:, :, 4]
