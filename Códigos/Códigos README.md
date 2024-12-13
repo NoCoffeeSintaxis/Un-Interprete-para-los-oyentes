@@ -14,5 +14,11 @@ Aquí podrá comprender la utilidad de cada uno de los códigos presentes en est
 
 ## Tratamiento de datos
 
-**Tratamiento de videos:** Este es la versión beta de <u> (Tratamiento automático de videos) </u>
+**Tratamiento de videos:** Este es la versión beta de <u> (Tratamiento automático de videos) </u>, convierte un video en una matriz 
+tridimensional en formato numpy (.npy)
 
+**Tratamiento automático de videos:** Lee cada uno de los videos, los convierte en matrices tridimensionales y los almacena en la carpeta "Datos"
+
+**Metadata:** Almacena las etiquetas y direcciones de cada uno de los videos en "Datos" en un dataframe de pandas.
+
+**Verificar dimensiones de las matrices:** Cuenta la cantidad de matrices que tienen diferentes dimensiones.
