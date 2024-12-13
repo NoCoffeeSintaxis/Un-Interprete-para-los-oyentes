@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 import string
+from sklearn.preprocessing import LabelEncoder
 
 #Listas con las letras
 mayus = list(string.ascii_uppercase) + ['LL', 'RR', 'Ñ']
@@ -15,11 +16,16 @@ for letra, LETRA in zip(minus, mayus):
         label = f'{LETRA}'
         paths.append(path)
         labels.append(label)
+
+encoder = LabelEncoder()            
+labels = encoder.fit_transform(labels)            
             
 df = pd.DataFrame({
     "Path" : paths,
     "Label" : labels
 })
+
+print(df.head())
 
 df.to_csv("Metadata.csv", index=False)
             

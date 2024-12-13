@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import torch.nn.functional as F
 from sklearn.preprocessing import LabelEncoder
 from torch.utils.data import Dataset
+from torch.utils.data import DataLoader
 
 #Pre-procesamiento de datos
 
@@ -67,23 +68,26 @@ class CNN3D(nn.Module):
         x = self.conv2(x)
         x = F.relu(x)
         x = self.pool(x)
-        x = x.view(x.size(0), -1)
-
-        # Capa fully connected
+        x = x.view(x.size(0), -1) 
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
-
         return x
 
+# Verificación de la GPU
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print(f"Usando el dispositivo: {device}")
+
+# Cargar el dataset
 DataFrame = pd.read_csv('Metadata.csv')
-
 sign_language_dataset = SignLanguageDataset(dataframe=DataFrame)
-batch_sample = torch.stack([sign_language_dataset[i][0].unsqueeze(0) for i in range(8)]) 
 
+# Preparar un batch y moverlo al dispositivo
+batch_sample = torch.stack([sign_language_dataset[i][0].unsqueeze(0) for i in range(16)]).to(device)
 print(f"Dimensiones del batch: {batch_sample.shape}")
 
-model = CNN3D()
+# Instanciar el modelo y moverlo al dispositivo
+model = CNN3D().to(device)
 
+# Pasar el batch por el modelo
 output = model(batch_sample)
-
 print(f"Dimensiones de salida después de la capa totalmente conectada: {output.shape}")
