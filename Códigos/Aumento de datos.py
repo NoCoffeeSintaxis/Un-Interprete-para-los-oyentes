@@ -43,7 +43,7 @@ deg = 15
 RP = rotacion_positiva(video, 15)
 
 plt.imshow(RP[:, :, 4], cmap='gray')
-plt.title(f'Frame rotado (-) {deg} grados')
+plt.title(f'Frame rotado (+) {deg} grados')
 plt.axis('off')
 plt.show()
 '''
@@ -77,7 +77,7 @@ def translacion_frames(A, tx, ty):
 '''
 # Visualización del filtro
 
-T = translacion_frames(video, 50, 50)
+T = translacion_frames(video, 20, 20)
 
 plt.imshow(T[:, :, 4], cmap='gray')
 plt.title('Frame trasladado')
@@ -140,7 +140,7 @@ def desenfoque_gaussiano(A, kernel_size):
 '''
 # Visualización del filtro
 
-kernel_size = 9
+kernel_size = 7
 gaussian_blur = desenfoque_gaussiano(video, kernel_size) # Kernel máx size: 9
 
 plt.imshow(gaussian_blur[:, :, 4], cmap='gray')
